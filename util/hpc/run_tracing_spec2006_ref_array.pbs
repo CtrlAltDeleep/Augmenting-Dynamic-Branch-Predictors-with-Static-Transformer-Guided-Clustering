@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#PBS -lwalltime=07:30:00
+#PBS -lselect=1:ncpus=2:mem=24gb:cpu_type=rome
+#PBS -N simpoint_trace_spec2006_ref
+#PBS -J 0-34
+
+module load gcc/11.2.0
+module load anaconda3/personal
+
+source activate gem5
+
+cd ${PBS_O_WORKDIR}
+
+export LD_LIBRARY_PATH=/rds/general/user/as8319/home/anaconda3/envs/gem5/lib:${LD_LIBRARY_PATH}
+
+time /rds/general/user/as8319/home/gem5/dispatch_script.py --use-hpc-array --idx ${PBS_ARRAY_INDEX} \
+	--base-dir /rds/general/user/as8319/home/experiments/spec2006_ref --script build_traces.sh
+

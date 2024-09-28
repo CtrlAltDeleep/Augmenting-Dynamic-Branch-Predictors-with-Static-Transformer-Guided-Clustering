@@ -1,0 +1,3 @@
+from .spec2006_test_workloads import Spec2006TestBenchmarks 
+from .spec2006_train_workloads import Spec2006TrainBenchmarks 
+from .spec2006_ref_workloads import Spec2006RefBenchmarks
